@@ -9,6 +9,7 @@ on:
 env:
   DOCKER_USER: bencuk
   IMAGE_NAME: kubeview
+  REGISTRY: ghcr.io
 
 permissions:
   packages: write
@@ -44,7 +45,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
+          tags: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
           labels: ${{ steps.meta.outputs.labels }}
           file: ./build/Dockerfile
           build-args: |
