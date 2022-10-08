@@ -7,7 +7,7 @@ on:
     types: [published]
 
 env:
-  DOCKER_USER: bencuk
+  DOCKER_USER: jeanribes
   IMAGE_NAME: kubeview
   REGISTRY: ghcr.io
 
@@ -45,7 +45,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
+          tags: ${{ env.REGISTRY }}/${{ env.DOCKER_USER }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
           labels: ${{ steps.meta.outputs.labels }}
           file: ./build/Dockerfile
           build-args: |
